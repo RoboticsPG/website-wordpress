@@ -132,6 +132,12 @@ a.navbar-item:hover {
     padding-top: 2em;
     max-width: 80%;
     margin: auto;
+
+    line-height: 2em;
+}
+
+.post p {
+    padding-bottom: 2em;
 }
 
 .post a {

@@ -16,7 +16,15 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
         <!-- FONTS -->
-        <link href="https://fonts.googleapis.com/css?family=Share+Tech" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 		<?php wp_head(); ?>
 		<script>
@@ -36,14 +44,7 @@
 
 			<!-- header -->
 			<header class="header clear" role="banner">
-                <nav class="navbar" role="navigation" aria-label="main navigation">
-                    <div class="navbar-brand">
-                        <a class="navbar-item brand" id="navbar-toggle"><i class="fas fa-bars"></i></a>
-                        <a class="navbar-item brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">Robotics Playground</a>
-                    </div>
-
-                </nav>
-
+                <?php get_sidebar(); ?>
 			</header>
             <!-- /header -->
 

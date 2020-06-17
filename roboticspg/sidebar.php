@@ -7,17 +7,29 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-
         <ul class="navbar-nav">
-
             <?php $pages = get_pages(); ?>
-            <?php foreach ($pages as $page) : ?>
+            <?php
+            foreach ($pages as $page) {
+                $navItem = "<li class=\"nav-item\"><a class=\"nav-link\" ";
 
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo get_page_link($page->ID); ?>"><?php echo strtoupper($page->post_title) ?><span class="sr-only">(current)</span></a>
-                </li>
-                
-            <?php endforeach; ?>
+                if (is_page($page->post_title)) {
+                    $navItem .= "id=\"nav-active\"";
+                }
+
+                $navItem .=  " href=\"" . get_page_link($page->ID) . "\">";
+                $navItem .= strtoupper($page->post_title);
+
+                if (is_page($page->post_title)) {
+                    $navItem .= "<span class=\"sr-only\">(current)</span>";
+                }
+
+                $navItem .= "</a></li>";
+
+                echo $navItem;
+            }
+            ?>
+
         </ul>
     </div>
 </nav>

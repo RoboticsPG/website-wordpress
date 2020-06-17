@@ -15,6 +15,7 @@
     MAIN
 \*------------------------------------*/
 
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&display=swap');
 :root {
     --WHITE-LIGHT: #F2F7F8;
     --WHITE-DARK: #DFE4E5;
@@ -42,7 +43,10 @@
     text-rendering: optimizeLegibility;
 }
 
-html {}
+html {
+    background-color: var(--WHITE-LIGHT);
+    color: var(--TEXT-BLACK);
+}
 
 body {
     font-family: 'Barlow', sans-serif;
@@ -77,12 +81,12 @@ img {
 }
 
 a {
-    color: #444;
+    color: var(--TEXT-BLACK);
     text-decoration: none;
 }
 
 a:hover {
-    color: #444;
+    color: var(--TEXT-BLACK);
 }
 
 a:focus {
@@ -96,7 +100,7 @@ a:active {
 
 input:focus {
     outline: 0;
-    border: 1px solid #04A4CC;
+    border: 1px solid var(--BLUE-LIGHT);
 }
 
 
@@ -122,13 +126,13 @@ input:focus {
     background-color: var(--WHITE-LIGHT);
 }
 
-#navbar-wrapper a:hover:not(#menuFavicon):not(.active) {
+#navbar-wrapper a:hover:not(#menuFavicon):not(#active) {
     border-top: 5px solid var(--YELLOW-LIGHT);
     color: var(--YELLOW-LIGHT);
     font-weight: bold;
 }
 
-#navbar-wrapper a:not(#menuFavicon):not(.active) {
+#navbar-wrapper a:not(#menuFavicon):not(#active) {
     border-top: 5px solid var(--WHITE-LIGHT);
     color: var(--TEXT-BLACK);
     font-weight: normal;
@@ -140,7 +144,7 @@ input:focus {
     padding: 10px 15px 10px 15px;
 }
 
-.active a {
+#nav-active a {
     text-decoration: none;
     border-top: 5px solid var(--AQUA-LIGHT);
     color: var(--AQUA-LIGHT);
@@ -159,9 +163,11 @@ input:focus {
  */
 
 .hero-body>h1 {
-    font-family: 'Share Tech', sans-serif;
+    font-family: 'Barlow', sans-serif;
     font-size: 4em;
-    color: white;
+    color: var(--BLUE-LIGHT);
+    font-weight: 600;
+    text-align: center;
 }
 
 .post {
@@ -176,7 +182,7 @@ input:focus {
 }
 
 .post a {
-    color: #4682b4;
+    color: var(--BLUE-LIGHT);
     text-decoration: underline;
 }
 
@@ -206,21 +212,10 @@ input:focus {
 .logo-img {}
 
 
-/* nav */
-
-.nav {}
-
-
-/* sidebar */
-
-.sidebar {}
-
-
 /*------------------------------------*\
     FOOTER
 \*------------------------------------*/
 
-@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 .footer {
     background-color: var(--WHITE-LIGHT);
     padding: 10% 15% 5% 15%;
@@ -256,7 +251,7 @@ a.btn-social,
 
 .btn-social:hover,
 .btn-social:focus {
-    color: #fff;
+    color: var(--WHITE-LIGHT);
     outline: none;
     text-decoration: none;
 }
@@ -358,6 +353,29 @@ a.btn-social,
     font-style: normal;
 }
 
+h1 {
+    font-family: 'Barlow', sans-serif;
+    font-size: 4em;
+    font-weight: 600;
+    text-align: center;
+}
+
+p {
+    font-family: 'Barlow', sans-serif;
+}
+
+.white-text {
+    color: var(--WHITE-LIGHT);
+}
+
+.blue-text {
+    color: var(--BLUE-LIGHT);
+}
+
+.black-text {
+    color: var(--TEXT-BLACK);
+}
+
 
 /*------------------------------------*\
     RESPONSIVE
@@ -384,20 +402,20 @@ only screen and (min-resolution:144dpi) {}
 \*------------------------------------*/
 
 ::selection {
-    background: #04A4CC;
-    color: #FFF;
+    background: var(--TEXT-BLACK);
+    color: var(--WHITE-LIGHT);
     text-shadow: none;
 }
 
 ::-webkit-selection {
-    background: #04A4CC;
-    color: #FFF;
+    background: var(--TEXT-BLACK);
+    color: var(--WHITE-LIGHT);
     text-shadow: none;
 }
 
 ::-moz-selection {
-    background: #04A4CC;
-    color: #FFF;
+    background: var(--TEXT-BLACK);
+    color: var(--WHITE-LIGHT);
     text-shadow: none;
 }
 
@@ -447,7 +465,7 @@ a img.aligncenter {
 }
 
 .wp-caption {
-    background: #FFF;
+    background: var(--WHITE-LIGHT);
     border: 1px solid #F0F0F0;
     max-width: 96%;
     padding: 5px 3px 10px;
@@ -495,7 +513,7 @@ a img.aligncenter {
 @media print {
     * {
         background: transparent !important;
-        color: #000 !important;
+        color: var(--TEXT-BLACK) !important;
         box-shadow: none !important;
         text-shadow: none !important;
     }
@@ -516,7 +534,7 @@ a img.aligncenter {
     }
     pre,
     blockquote {
-        border: 1px solid #999;
+        border: 1px solid var(--TEXT-BLACK);
         page-break-inside: avoid;
     }
     thead {

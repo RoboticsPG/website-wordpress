@@ -48,7 +48,6 @@
 			</header>
             <!-- /header -->
 
-
             <aside class="menu main-nav hide" id="main-menu">
                 <?php echo wp_nav_menu(array(
                     "menu_class" => "menu-list"

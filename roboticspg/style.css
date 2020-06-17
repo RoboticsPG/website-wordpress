@@ -126,14 +126,14 @@ input:focus {
     background-color: var(--WHITE-LIGHT);
 }
 
-#navbar-wrapper a:hover:not(#menuFavicon):not(#active) {
-    border-top: 5px solid var(--YELLOW-LIGHT);
+.nav-link:hover:not(#menuFavicon):not(.active) {
+    border-top: 4px solid var(--YELLOW-LIGHT);
     color: var(--YELLOW-LIGHT);
     font-weight: bold;
 }
 
-#navbar-wrapper a:not(#menuFavicon):not(#active) {
-    border-top: 5px solid var(--WHITE-LIGHT);
+.nav-link:not(#menuFavicon):not(.active) {
+    border-top: 4px solid var(--WHITE-LIGHT);
     color: var(--TEXT-BLACK);
     font-weight: normal;
 }
@@ -144,10 +144,10 @@ input:focus {
     padding: 10px 15px 10px 15px;
 }
 
-#nav-active a {
+.active {
     text-decoration: none;
-    border-top: 5px solid var(--AQUA-LIGHT);
-    color: var(--AQUA-LIGHT);
+    border-top: 4px solid var(--AQUA-LIGHT);
+    color: var(--AQUA-LIGHT) !important;
     font-weight: bold;
 }
 

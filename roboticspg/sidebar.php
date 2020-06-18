@@ -8,26 +8,30 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <?php $pages = get_pages(); ?>
+
             <?php
+            $pages = get_pages(array('sort_column' => 'menu_order'));
+
             foreach ($pages as $page) {
-                $navItem = "<li class=\"nav-item\"><a class=\"nav-link ";
+
+                $navItem = "<li class='nav-item'><a class='nav-link ";
 
                 if (is_page($page->post_title)) {
                     $navItem .= " active ";
                 }
 
-                $navItem .=  " \" href=\"" . get_page_link($page->ID) . "\">";
+                $navItem .=  "' href='" . get_page_link($page->ID) . "'\"'>";
                 $navItem .= strtoupper($page->post_title);
 
                 if (is_page($page->post_title)) {
-                    $navItem .= "<span class=\"sr-only\">(current)</span>";
+                    $navItem .= "<span class='sr-only'>(current)</span>";
                 }
 
                 $navItem .= "</a></li>";
 
                 echo $navItem;
             }
+
             ?>
 
         </ul>

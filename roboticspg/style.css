@@ -59,7 +59,11 @@ body {
 }
 
 section {
-    margin: 10% 15% 10% 15%;
+    padding: 10% 15% 10% 15%;
+}
+
+.full-height {
+    height: 100vh !important;
 }
 
 article {
@@ -336,7 +340,7 @@ button {
     font-weight: 600;
     text-align: center;
     margin: 0;
-    padding: 0;
+    padding: 0 !important;
 }
 
 .post {
@@ -509,6 +513,12 @@ a.btn-social,
     IMAGES
 \*------------------------------------*/
 
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 /*------------------------------------*\
 	TYPOGRAPHY
@@ -527,6 +537,7 @@ h1 {
     font-size: 4em;
     font-weight: 600;
     text-align: center;
+    margin: 0 0 10px 0;
 }
 
 p {
@@ -534,16 +545,40 @@ p {
     color: var(--TEXT-BLACK);
 }
 
-.white-text {
-    color: var(--WHITE-LIGHT);
+.center-text {
+    text-align: center;
 }
 
-.blue-text {
-    color: var(--BLUE-LIGHT);
+
+/*------------------------------------*\
+    ANIMATIONS
+\*------------------------------------*/
+
+p,
+a,
+h1,
+h2,
+h3,
+img,
+li,
+ol,
+ul {
+    opacity: 0;
+    transform: translate(0, 5vh);
+    transition: all 1s;
 }
 
-.black-text {
-    color: var(--TEXT-BLACK);
+p.visible,
+a.visible,
+h1.visible,
+h2.visible,
+h3.visible,
+img,
+li,
+ol,
+ul {
+    opacity: 1;
+    transform: translate(0, 0);
 }
 
 

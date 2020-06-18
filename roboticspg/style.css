@@ -151,6 +151,132 @@ button {
 
 
 /*------------------------------------*\
+    COLOR PALETTE
+\*------------------------------------*/
+
+
+/* white light */
+
+.has-white-light-background-color {
+    background-color: var(--WHITE-LIGHT);
+}
+
+.has-white-light-color {
+    color: var(--WHITE-LIGHT);
+}
+
+
+/* white dark */
+
+.has-white-dark-background-color {
+    background-color: var(--WHITE-DARK);
+}
+
+.has-white-dark-color {
+    color: var(--WHITE-DARK);
+}
+
+
+/* yellow light */
+
+.has-yellow-light-background-color {
+    background-color: var(--YELLOW-LIGHT);
+}
+
+.has-yellow-light-color {
+    color: var(--YELLOW-LIGHT);
+}
+
+
+/* yellow dark */
+
+.has-yellow-dark-background-color {
+    background-color: var(--YELLOW-DARK);
+}
+
+.has-yellow-dark-color {
+    color: var(--YELLOW-DARK);
+}
+
+
+/* aqua light */
+
+.has-aqua-light-background-color {
+    background-color: var(--AQUA-LIGHT);
+}
+
+.has-aqua-light-color {
+    color: var(--AQUA-LIGHT);
+}
+
+
+/* aqua dark */
+
+.has-aqua-dark-background-color {
+    background-color: var(--AQUA-DARK);
+}
+
+.has-aqua-dark-color {
+    color: var(--AQUA-DARK);
+}
+
+
+/* pink light */
+
+.has-pink-light-background-color {
+    background-color: var(--PINK-LIGHT);
+}
+
+.has-pink-light-color {
+    color: var(--PINK-LIGHT);
+}
+
+
+/* pink dark */
+
+.has-pink-dark-background-color {
+    background-color: var(--PINK-DARK);
+}
+
+.has-pink-dark-color {
+    color: var(--PINK-DARK);
+}
+
+
+/* blue light */
+
+.has-blue-light-background-color {
+    background-color: var(--BLUE-LIGHT);
+}
+
+.has-blue-light-color {
+    color: var(--BLUE-LIGHT);
+}
+
+
+/* blue dark */
+
+.has-blue-dark-background-color {
+    background-color: var(--BLUE-DARK);
+}
+
+.has-blue-dark-color {
+    color: var(--BLUE-DARK);
+}
+
+
+/* text black */
+
+.has-text-black-background-color {
+    background-color: var(--TEXT-BLACK);
+}
+
+.has-text-black-color {
+    color: var(--TEXT-BLACK);
+}
+
+
+/*------------------------------------*\
     NAVBAR
 \*------------------------------------*/
 
@@ -405,6 +531,7 @@ h1 {
 
 p {
     font-family: 'Barlow', sans-serif;
+    color: var(--TEXT-BLACK);
 }
 
 .white-text {

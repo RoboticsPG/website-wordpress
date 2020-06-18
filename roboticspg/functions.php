@@ -3,6 +3,18 @@
  *  Custom functions, support, custom post types and more.
  */
 
+define("WHITE_LIGHT", "F2F7F8");
+define("WHITE_DARK", "DFE4E5");
+define("YELLOW_LIGHT", "E59B38");
+define("YELLOW_DARK", "D38F34");
+define("AQUA_LIGHT", "46B5BB");
+define("AQUA_DARK", "DFE4E5");
+define("PINK_LIGHT", "FAD6E2");
+define("PINK_DARK", "EBC9D4");
+define("BLUE_LIGHT", "1D49B5");
+define("BLUE_DARK", "1B43A7");
+define("TEXT_BLACK", "111111");
+
 /*------------------------------------*\
 	External Modules/Files
 \*------------------------------------*/
@@ -31,10 +43,9 @@ if (function_exists('add_theme_support'))
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
-    /*add_theme_support('custom-background', array(
-	'default-color' => 'FFF',
-	'default-image' => get_template_directory_uri() . '/img/bg.jpg'
-    ));*/
+    add_theme_support('custom-background', array(
+	    'default-color' => WHITE_LIGHT,
+    ));
 
     // Add Support for Custom Header - Uncomment below if you're going to use
     /*add_theme_support('custom-header', array(
@@ -306,35 +317,98 @@ function html5blankcomments($comment, $args, $depth)
 		$add_below = 'div-comment';
 	}
 ?>
-    <!-- heads up: starting < for the html tag (li or div) in the next line: -->
-    <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
-	<?php if ( 'div' != $args['style'] ) : ?>
-	<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
-	<?php endif; ?>
-	<div class="comment-author vcard">
-	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['180'] ); ?>
-	<?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
-	</div>
-<?php if ($comment->comment_approved == '0') : ?>
-	<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
-	<br />
-<?php endif; ?>
+<!-- heads up: starting < for the html tag (li or div) in the next line: -->
+<<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?>
+    id="comment-<?php comment_ID() ?>">
+    <?php if ( 'div' != $args['style'] ) : ?>
+    <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
+        <?php endif; ?>
+        <div class="comment-author vcard">
+            <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['180'] ); ?>
+            <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
+        </div>
+        <?php if ($comment->comment_approved == '0') : ?>
+        <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+        <br />
+        <?php endif; ?>
 
-	<div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
-		<?php
+        <div class="comment-meta commentmetadata"><a
+                href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
+                <?php
 			printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
 		?>
-	</div>
+        </div>
 
-	<?php comment_text() ?>
+        <?php comment_text() ?>
 
-	<div class="reply">
-	<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-	</div>
-	<?php if ( 'div' != $args['style'] ) : ?>
-	</div>
-	<?php endif; ?>
-<?php }
+        <div class="reply">
+            <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+        </div>
+        <?php if ( 'div' != $args['style'] ) : ?>
+    </div>
+    <?php endif; ?>
+    <?php }
+
+
+function add_custom_color_palette() {
+    add_theme_support( 'editor-color-palette', array(
+        array(
+            'name' => __( 'White Light', 'themeLangDomain' ),
+            'slug' => 'white-light',
+            'color' => WHITE_LIGHT,
+        ),
+        array(
+            'name' => __( 'White Dark', 'themeLangDomain' ),
+            'slug' => 'white-dark',
+            'color' => WHITE_DARK,
+        ),
+        array(
+            'name' => __( 'Yellow Light', 'themeLangDomain' ),
+            'slug' => 'yellow-light',
+            'color' => YELLOW_LIGHT,
+        ),
+        array(
+            'name' => __( 'Yellow Dark', 'themeLangDomain' ),
+            'slug' => 'yellow-dark',
+            'color' => YELLOW_DARK,
+        ),
+        array(
+            'name' => __( 'Aqua Light', 'themeLangDomain' ),
+            'slug' => 'aqua-light',
+            'color' => AQUA_LIGHT,
+        ),
+        array(
+            'name' => __( 'Aqua Dark', 'themeLangDomain' ),
+            'slug' => 'aqua-dark',
+            'color' => AQUA_DARK,
+        ),
+        array(
+            'name' => __( 'Pink Light', 'themeLangDomain' ),
+            'slug' => 'pink-light',
+            'color' => PINK_LIGHT,
+        ),
+        array(
+            'name' => __( 'Pink Dark', 'themeLangDomain' ),
+            'slug' => 'pink-dark',
+            'color' => PINK_DARK,
+        ),
+        array(
+            'name' => __( 'Blue Light', 'themeLangDomain' ),
+            'slug' => 'blue-light',
+            'color' => BLUE_LIGHT,
+        ),
+        array(
+            'name' => __( 'Blue Dark', 'themeLangDomain' ),
+            'slug' => 'blue-dark',
+            'color' => BLUE_DARK,
+        ),
+        array(
+            'name' => __( 'Text Black', 'themeLangDomain' ),
+            'slug' => 'text-black',
+            'color' => TEXT_BLACK,
+        ),
+    ) );
+}
 
 /*------------------------------------*\
 	Actions + Filters + ShortCodes
@@ -349,6 +423,7 @@ add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
+add_action( 'after_setup_theme', 'add_custom_color_palette' ); // add color palette
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds

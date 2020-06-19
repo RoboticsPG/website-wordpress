@@ -7,7 +7,8 @@
                             Phone: <a href="tel:+61432457064">(+61) 432 357 064</a></br></br>
 
                             Designed and Coded by <a href="https://thetruffles.github.io">Anna Truffet</a>.</br></br>
-
+                            
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                             <!-- social media icons-->
                             <a href="https://www.facebook.com/RoboticsPG/" target="_blank" class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a>
                             <a href="https://www.instagram.com/roboticsplayground/" target="_blank" class="btn-social btn-instagram"><i class="fa fa-instagram"></i></a>

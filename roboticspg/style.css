@@ -48,7 +48,8 @@ html {
     color: var(--TEXT-BLACK);
 }
 
-body {
+body,
+.hero-body {
     font-family: 'Barlow', sans-serif;
     font-weight: normal;
     font-style: normal;
@@ -56,10 +57,12 @@ body {
     margin-top: 1%;
     margin-bottom: 1%;
     font-size: 17px;
+    padding: 0 !important;
 }
 
 section {
     padding: 10% 15% 10% 15%;
+    margin: 0;
 }
 
 .full-height {
@@ -67,7 +70,9 @@ section {
 }
 
 article {
-    margin: 0 15px 0 15px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
 }
 
 
@@ -166,7 +171,7 @@ button {
 }
 
 .has-white-light-color {
-    color: var(--WHITE-LIGHT);
+    color: var(--WHITE-LIGHT) !important;
 }
 
 
@@ -329,37 +334,6 @@ button {
 }
 
 
-/**
- * Page
- */
-
-.hero-body>h1 {
-    font-family: 'Barlow', sans-serif;
-    font-size: 4em;
-    color: var(--BLUE-LIGHT);
-    font-weight: 600;
-    text-align: center;
-    margin: 0;
-    padding: 0 !important;
-}
-
-.post {
-    padding-top: 2em;
-    max-width: 80%;
-    margin: auto;
-    line-height: 2em;
-}
-
-.post p {
-    padding-bottom: 2em;
-}
-
-.post a {
-    color: var(--BLUE-LIGHT);
-    text-decoration: underline;
-}
-
-
 /*------------------------------------*\
     STRUCTURE
 \*------------------------------------*/
@@ -383,6 +357,26 @@ button {
 .logo {}
 
 .logo-img {}
+
+
+/*------------------------------------*\
+    SUBSECTIONS
+\*------------------------------------*/
+
+.subsection {
+    overflow: hidden;
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: justify;
+    vertical-align: middle;
+}
+
+.subsection-wrapper {
+    vertical-align: middle;
+}
 
 
 /*------------------------------------*\
@@ -519,6 +513,11 @@ a.btn-social,
     margin-right: auto;
 }
 
+.image-icon img,
+.image-icon {
+    height: 50px;
+}
+
 
 /*------------------------------------*\
 	TYPOGRAPHY
@@ -540,13 +539,21 @@ h1 {
     margin: 0 0 10px 0;
 }
 
-p {
+h2 {
     font-family: 'Barlow', sans-serif;
-    color: var(--TEXT-BLACK);
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 10px 0;
 }
 
-.center-text {
+p {
+    font-family: 'Barlow', sans-serif;
+}
+
+.has-text-align-center {
     text-align: center;
+    padding: 0 !important;
 }
 
 
@@ -562,7 +569,8 @@ h3,
 img,
 li,
 ol,
-ul {
+ul,
+figure {
     opacity: 0;
     transform: translate(0, 5vh);
     transition: all 1s;
@@ -573,10 +581,11 @@ a.visible,
 h1.visible,
 h2.visible,
 h3.visible,
-img,
-li,
-ol,
-ul {
+img.visible,
+li.visible,
+ol.visible,
+ul.visible,
+figure.visible {
     opacity: 1;
     transform: translate(0, 0);
 }

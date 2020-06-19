@@ -20,7 +20,7 @@
 function turnVisible() {
     var pageTop = $(document).scrollTop();
     var pageBottom = pageTop + $(window).height();
-    var tags = ["h1", "h2", "h3", "p", "a", "img", "li", "ol", "ul"];
+    var tags = ["h1", "h2", "h3", "p", "a", "img", "li", "ol", "ul", "figure"];
 
     for (var i = 0; i < tags.length; i++) {
         elements = document.getElementsByTagName(tags[i]);

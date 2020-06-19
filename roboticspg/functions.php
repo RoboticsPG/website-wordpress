@@ -15,6 +15,8 @@ define("BLUE_LIGHT", "1D49B5");
 define("BLUE_DARK", "1B43A7");
 define("TEXT_BLACK", "111111");
 
+
+
 /*------------------------------------*\
 	External Modules/Files
 \*------------------------------------*/
@@ -25,13 +27,11 @@ define("TEXT_BLACK", "111111");
 	Theme Support
 \*------------------------------------*/
 
-if (!isset($content_width))
-{
+if (!isset($content_width)) {
     $content_width = 900;
 }
 
-if (function_exists('add_theme_support'))
-{
+if (function_exists('add_theme_support')) {
     // Add Menu Support
     add_theme_support('menus');
 
@@ -44,7 +44,7 @@ if (function_exists('add_theme_support'))
 
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
     add_theme_support('custom-background', array(
-	    'default-color' => WHITE_LIGHT,
+        'default-color' => WHITE_LIGHT,
     ));
 
     // Add Support for Custom Header - Uncomment below if you're going to use
@@ -74,26 +74,26 @@ if (function_exists('add_theme_support'))
 // HTML5 Blank navigation
 function html5blank_nav()
 {
-	wp_nav_menu(
-	array(
-		'theme_location'  => 'header-menu',
-		'menu'            => '',
-		'container'       => 'div',
-		'container_class' => 'menu-{menu slug}-container',
-		'container_id'    => '',
-		'menu_class'      => 'menu',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul>%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
-		)
-	);
+    wp_nav_menu(
+        array(
+            'theme_location'  => 'header-menu',
+            'menu'            => '',
+            'container'       => 'div',
+            'container_class' => 'menu-{menu slug}-container',
+            'container_id'    => '',
+            'menu_class'      => 'menu',
+            'menu_id'         => '',
+            'echo'            => true,
+            'fallback_cb'     => 'wp_page_menu',
+            'before'          => '',
+            'after'           => '',
+            'link_before'     => '',
+            'link_after'      => '',
+            'items_wrap'      => '<ul>%3$s</ul>',
+            'depth'           => 0,
+            'walker'          => ''
+        )
+    );
 }
 
 // Load HTML5 Blank scripts (header.php)
@@ -104,7 +104,7 @@ function html5blank_header_scripts()
         wp_register_style('bulma', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css');
         wp_enqueue_style('bulma');
 
-    	wp_register_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array(), '4.3.0'); // Conditionizr
+        wp_register_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array(), '4.3.0'); // Conditionizr
         wp_enqueue_script('conditionizr'); // Enqueue it!
 
         wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
@@ -182,8 +182,7 @@ function add_slug_to_body_class($classes)
 }
 
 // If Dynamic Sidebar Exists
-if (function_exists('register_sidebar'))
-{
+if (function_exists('register_sidebar')) {
     // Define Sidebar Widget Area 1
     register_sidebar(array(
         'name' => __('Widget Area 1', 'html5blank'),
@@ -279,14 +278,14 @@ function html5_style_remove($tag)
 }
 
 // Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
-function remove_thumbnail_dimensions( $html )
+function remove_thumbnail_dimensions($html)
 {
     $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
     return $html;
 }
 
 // Custom Gravatar in Settings > Discussion
-function html5blankgravatar ($avatar_defaults)
+function html5blankgravatar($avatar_defaults)
 {
     $myavatar = get_template_directory_uri() . '/img/gravatar.jpg';
     $avatar_defaults[$myavatar] = "Custom Gravatar";
@@ -297,7 +296,7 @@ function html5blankgravatar ($avatar_defaults)
 function enable_threaded_comments()
 {
     if (!is_admin()) {
-        if (is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
+        if (is_singular() and comments_open() and (get_option('thread_comments') == 1)) {
             wp_enqueue_script('comment-reply');
         }
     }
@@ -306,113 +305,244 @@ function enable_threaded_comments()
 // Custom Comments Callback
 function html5blankcomments($comment, $args, $depth)
 {
-	$GLOBALS['comment'] = $comment;
-	extract($args, EXTR_SKIP);
+    $GLOBALS['comment'] = $comment;
+    extract($args, EXTR_SKIP);
 
-	if ( 'div' == $args['style'] ) {
-		$tag = 'div';
-		$add_below = 'comment';
-	} else {
-		$tag = 'li';
-		$add_below = 'div-comment';
-	}
+    if ('div' == $args['style']) {
+        $tag = 'div';
+        $add_below = 'comment';
+    } else {
+        $tag = 'li';
+        $add_below = 'div-comment';
+    }
 ?>
-<!-- heads up: starting < for the html tag (li or div) in the next line: -->
-<<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?>
-    id="comment-<?php comment_ID() ?>">
-    <?php if ( 'div' != $args['style'] ) : ?>
-    <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
+    <!-- heads up: starting < for the html tag (li or div) in the next line: -->
+    <<?php echo $tag ?> <?php comment_class(empty($args['has_children']) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
+        <?php if ('div' != $args['style']) : ?>
+            <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
+            <?php endif; ?>
+            <div class="comment-author vcard">
+                <?php if ($args['avatar_size'] != 0) echo get_avatar($comment, $args['180']); ?>
+                <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
+            </div>
+            <?php if ($comment->comment_approved == '0') : ?>
+                <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+                <br />
+            <?php endif; ?>
+
+            <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)) ?>">
+                    <?php
+                    printf(__('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'), '  ', '');
+                                                                                                ?>
+            </div>
+
+            <?php comment_text() ?>
+
+            <div class="reply">
+                <?php comment_reply_link(array_merge($args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+            </div>
+            <?php if ('div' != $args['style']) : ?>
+            </div>
         <?php endif; ?>
-        <div class="comment-author vcard">
-            <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['180'] ); ?>
-            <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
-        </div>
-        <?php if ($comment->comment_approved == '0') : ?>
-        <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
-        <br />
-        <?php endif; ?>
-
-        <div class="comment-meta commentmetadata"><a
-                href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
-                <?php
-			printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
-		?>
-        </div>
-
-        <?php comment_text() ?>
-
-        <div class="reply">
-            <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-        </div>
-        <?php if ( 'div' != $args['style'] ) : ?>
-    </div>
-    <?php endif; ?>
     <?php }
 
 
-function add_custom_color_palette() {
-    add_theme_support( 'editor-color-palette', array(
+function add_custom_color_palette()
+{
+    add_theme_support('editor-color-palette', array(
         array(
-            'name' => __( 'White Light', 'themeLangDomain' ),
+            'name' => __('White Light', 'themeLangDomain'),
             'slug' => 'white-light',
             'color' => WHITE_LIGHT,
         ),
         array(
-            'name' => __( 'White Dark', 'themeLangDomain' ),
+            'name' => __('White Dark', 'themeLangDomain'),
             'slug' => 'white-dark',
             'color' => WHITE_DARK,
         ),
         array(
-            'name' => __( 'Yellow Light', 'themeLangDomain' ),
+            'name' => __('Yellow Light', 'themeLangDomain'),
             'slug' => 'yellow-light',
             'color' => YELLOW_LIGHT,
         ),
         array(
-            'name' => __( 'Yellow Dark', 'themeLangDomain' ),
+            'name' => __('Yellow Dark', 'themeLangDomain'),
             'slug' => 'yellow-dark',
             'color' => YELLOW_DARK,
         ),
         array(
-            'name' => __( 'Aqua Light', 'themeLangDomain' ),
+            'name' => __('Aqua Light', 'themeLangDomain'),
             'slug' => 'aqua-light',
             'color' => AQUA_LIGHT,
         ),
         array(
-            'name' => __( 'Aqua Dark', 'themeLangDomain' ),
+            'name' => __('Aqua Dark', 'themeLangDomain'),
             'slug' => 'aqua-dark',
             'color' => AQUA_DARK,
         ),
         array(
-            'name' => __( 'Pink Light', 'themeLangDomain' ),
+            'name' => __('Pink Light', 'themeLangDomain'),
             'slug' => 'pink-light',
             'color' => PINK_LIGHT,
         ),
         array(
-            'name' => __( 'Pink Dark', 'themeLangDomain' ),
+            'name' => __('Pink Dark', 'themeLangDomain'),
             'slug' => 'pink-dark',
             'color' => PINK_DARK,
         ),
         array(
-            'name' => __( 'Blue Light', 'themeLangDomain' ),
+            'name' => __('Blue Light', 'themeLangDomain'),
             'slug' => 'blue-light',
             'color' => BLUE_LIGHT,
         ),
         array(
-            'name' => __( 'Blue Dark', 'themeLangDomain' ),
+            'name' => __('Blue Dark', 'themeLangDomain'),
             'slug' => 'blue-dark',
             'color' => BLUE_DARK,
         ),
         array(
-            'name' => __( 'Text Black', 'themeLangDomain' ),
+            'name' => __('Text Black', 'themeLangDomain'),
             'slug' => 'text-black',
             'color' => TEXT_BLACK,
         ),
-    ) );
+    ));
 }
+
+
+/*------------------------------------*\
+	Additional Attrs for Pages & Posts
+\*------------------------------------*/
+
+// POST SORTING ON A PAGE
+function jpen_custom_post_sort($post)
+{
+    add_meta_box(
+        'custom_post_sort_box',
+        'Post Order on Page',
+        'jpen_custom_post_order',
+        'post',
+        'side'
+    );
+}
+
+function jpen_custom_post_order($post)
+{
+    wp_nonce_field(basename(__FILE__), 'jpen_custom_post_order_nonce');
+    $current_pos = get_post_meta($post->ID, '_custom_post_order', true); ?>
+        <p>Post's position to appear in. For example, post "1" will appear first, post "2" second, and so forth.</p>
+        <p><input type="number" name="pos" value="<?php echo $current_pos; ?>" /></p>
+    <?php
+}
+
+function jpen_save_custom_post_order($post_id)
+{
+    if (!isset($_POST['jpen_custom_post_order_nonce']) || !wp_verify_nonce($_POST['jpen_custom_post_order_nonce'], basename(__FILE__))) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    if (isset($_REQUEST['pos'])) {
+        update_post_meta($post_id, '_custom_post_order', sanitize_text_field($_POST['pos']));
+    }
+}
+
+function jpen_add_custom_post_order_column($columns)
+{
+    return array_merge(
+        $columns,
+        array('pos' => 'Position',)
+    );
+}
+
+function jpen_custom_post_order_value($column, $post_id)
+{
+    if ($column == 'pos') {
+        echo '<p>' . get_post_meta($post_id, '_custom_post_order', true) . '</p>';
+        
+    }     else if ($column == 'theme') {
+        echo '<p>' . get_post_meta($post_id, '_custom_post_theme', true) . '</p>';
+    }
+}
+
+function jpen_custom_post_order_sort($query)
+{
+    if ($query->is_main_query() && is_home()) {
+        $query->set('orderby', 'meta_value');
+        $query->set('meta_key', '_custom_post_order');
+        $query->set('order', 'ASC');
+    }
+}
+
+// POST LIGHT OR DARK THEME
+function jpen_custom_post_theme_entry($post)
+{
+    add_meta_box(
+        'custom_post_theme_box',
+        'White or Colored Theme',
+        'jpen_custom_post_theme',
+        'post',
+        'side',
+        'high'
+    );
+}
+
+function jpen_custom_post_theme($post)
+{
+    wp_nonce_field(basename(__FILE__), 'jpen_custom_post_theme_nonce');
+    $current_pos = get_post_meta($post->ID, '_custom_post_theme', true); ?>
+        <p>White Themed or Colored Themed?</p>
+        <p>
+            <select name="theme">
+                <option value="white">White Themed</option>
+                <option value="colored">Colored Themed</option>
+            </select>
+        </p>
+    <?php
+}
+
+/* Save the input to post_meta_data */
+
+function jpen_save_custom_post_theme($post_id)
+{
+    if (!isset($_POST['jpen_custom_post_theme_nonce']) || !wp_verify_nonce($_POST['jpen_custom_post_theme_nonce'], basename(__FILE__))) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (!current_user_can('edit_theme', $post_id)) {
+        return;
+    }
+
+    if (isset($_REQUEST['theme'])) {
+        update_post_meta($post_id, '_custom_post_theme', sanitize_text_field($_POST['theme']));
+    }
+
+}
+
+/* Add custom post order column to post list */
+
+function jpen_add_custom_post_theme_column($columns)
+{
+    return array_merge(
+        $columns,
+        array('theme' => 'Theme',)
+    );
+}
+
 
 /*------------------------------------*\
 	Actions + Filters + ShortCodes
 \*------------------------------------*/
+
+// Add Theme Support
+add_theme_support("post-formats", array('aside', "gallery"));
 
 // Add Actions
 add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
@@ -423,7 +553,15 @@ add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
-add_action( 'after_setup_theme', 'add_custom_color_palette' ); // add color palette
+add_action('after_setup_theme', 'add_custom_color_palette'); // add color palette
+add_action('add_meta_boxes', 'jpen_custom_post_sort'); // add custom post sorting
+add_action('save_post', 'jpen_save_custom_post_order'); // add custom post saving order
+add_action('manage_posts_custom_column', 'jpen_custom_post_order_value', 10, 2); // display custom post order in admin view
+add_action('pre_get_posts', 'jpen_custom_post_order_sort'); // get posts so they are custom sorted
+add_action('manage_posts_custom_column', 'jpen_custom_post_order_value', 10, 2);
+add_action('save_post', 'jpen_save_custom_post_theme');
+add_action('add_meta_boxes', 'jpen_custom_post_theme_entry');
+
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -456,6 +594,9 @@ add_filter('show_admin_bar', 'remove_admin_bar'); // Remove Admin bar
 add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from enqueued stylesheet
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to post images
+add_filter('manage_posts_columns', 'jpen_add_custom_post_order_column'); // Sort custom post order in admin view
+add_filter('manage_posts_columns', 'jpen_add_custom_post_theme_column');
+
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
@@ -476,37 +617,39 @@ function create_post_type_html5()
 {
     register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
     register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
+    register_post_type(
+        'html5-blank', // Register Custom Post Type
         array(
-        'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
+            'labels' => array(
+                'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
+                'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
+                'add_new' => __('Add New', 'html5blank'),
+                'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
+                'edit' => __('Edit', 'html5blank'),
+                'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
+                'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
+                'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
+                'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
+                'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
+                'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
+                'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
+            ),
+            'public' => true,
+            'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+            'has_archive' => true,
+            'supports' => array(
+                'title',
+                'editor',
+                'excerpt',
+                'thumbnail'
+            ), // Go to Dashboard Custom HTML5 Blank post for supports
+            'can_export' => true, // Allows export in Tools > Export
+            'taxonomies' => array(
+                'post_tag',
+                'category'
+            ) // Add Category and Post Tags support
+        )
+    );
 }
 
 /*------------------------------------*\
@@ -525,4 +668,4 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
     return '<h2>' . $content . '</h2>';
 }
 
-?>
+    ?>

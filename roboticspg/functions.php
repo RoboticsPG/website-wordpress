@@ -418,7 +418,7 @@ function jpen_custom_post_sort($post)
 {
     add_meta_box(
         'custom_post_sort_box',
-        'Post Order on Page',
+        'Post Order & Theme',
         'jpen_custom_post_order',
         'post',
         'side'
@@ -429,8 +429,18 @@ function jpen_custom_post_order($post)
 {
     wp_nonce_field(basename(__FILE__), 'jpen_custom_post_order_nonce');
     $current_pos = get_post_meta($post->ID, '_custom_post_order', true); ?>
-        <p>Post's position to appear in. For example, post "1" will appear first, post "2" second, and so forth.</p>
+        <p>Post's position to appear in. E.g. post "1" will appear first, post "2" second.</p>
         <p><input type="number" name="pos" value="<?php echo $current_pos; ?>" /></p>
+
+        </br>
+
+        <p>White Themed or Colored Themed?</p>
+        <p>
+            <select name="theme">
+                <option value="white">White Themed</option>
+                <option value="colored">Colored Themed</option>
+            </select>
+        </p>
     <?php
 }
 
@@ -445,8 +455,9 @@ function jpen_save_custom_post_order($post_id)
     if (!current_user_can('edit_post', $post_id)) {
         return;
     }
-    if (isset($_REQUEST['pos'])) {
+    if (isset($_REQUEST['pos']) && isset($_REQUEST['theme'])) {
         update_post_meta($post_id, '_custom_post_order', sanitize_text_field($_POST['pos']));
+        update_post_meta($post_id, '_custom_post_theme', sanitize_text_field($_POST['theme']));
     }
 }
 
@@ -454,7 +465,7 @@ function jpen_add_custom_post_order_column($columns)
 {
     return array_merge(
         $columns,
-        array('pos' => 'Position',)
+        array('pos' => 'Position', 'theme' => 'Theme')
     );
 }
 
@@ -463,7 +474,7 @@ function jpen_custom_post_order_value($column, $post_id)
     if ($column == 'pos') {
         echo '<p>' . get_post_meta($post_id, '_custom_post_order', true) . '</p>';
         
-    }     else if ($column == 'theme') {
+    } else if ($column == 'theme') {
         echo '<p>' . get_post_meta($post_id, '_custom_post_theme', true) . '</p>';
     }
 }
@@ -475,65 +486,6 @@ function jpen_custom_post_order_sort($query)
         $query->set('meta_key', '_custom_post_order');
         $query->set('order', 'ASC');
     }
-}
-
-// POST LIGHT OR DARK THEME
-function jpen_custom_post_theme_entry($post)
-{
-    add_meta_box(
-        'custom_post_theme_box',
-        'White or Colored Theme',
-        'jpen_custom_post_theme',
-        'post',
-        'side',
-        'high'
-    );
-}
-
-function jpen_custom_post_theme($post)
-{
-    wp_nonce_field(basename(__FILE__), 'jpen_custom_post_theme_nonce');
-    $current_pos = get_post_meta($post->ID, '_custom_post_theme', true); ?>
-        <p>White Themed or Colored Themed?</p>
-        <p>
-            <select name="theme">
-                <option value="white">White Themed</option>
-                <option value="colored">Colored Themed</option>
-            </select>
-        </p>
-    <?php
-}
-
-/* Save the input to post_meta_data */
-
-function jpen_save_custom_post_theme($post_id)
-{
-    if (!isset($_POST['jpen_custom_post_theme_nonce']) || !wp_verify_nonce($_POST['jpen_custom_post_theme_nonce'], basename(__FILE__))) {
-        return;
-    }
-
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    
-    if (!current_user_can('edit_theme', $post_id)) {
-        return;
-    }
-
-    if (isset($_REQUEST['theme'])) {
-        update_post_meta($post_id, '_custom_post_theme', sanitize_text_field($_POST['theme']));
-    }
-
-}
-
-/* Add custom post order column to post list */
-
-function jpen_add_custom_post_theme_column($columns)
-{
-    return array_merge(
-        $columns,
-        array('theme' => 'Theme',)
-    );
 }
 
 
@@ -559,9 +511,6 @@ add_action('save_post', 'jpen_save_custom_post_order'); // add custom post savin
 add_action('manage_posts_custom_column', 'jpen_custom_post_order_value', 10, 2); // display custom post order in admin view
 add_action('pre_get_posts', 'jpen_custom_post_order_sort'); // get posts so they are custom sorted
 add_action('manage_posts_custom_column', 'jpen_custom_post_order_value', 10, 2);
-add_action('save_post', 'jpen_save_custom_post_theme');
-add_action('add_meta_boxes', 'jpen_custom_post_theme_entry');
-
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -595,7 +544,6 @@ add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from 
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to post images
 add_filter('manage_posts_columns', 'jpen_add_custom_post_order_column'); // Sort custom post order in admin view
-add_filter('manage_posts_columns', 'jpen_add_custom_post_theme_column');
 
 
 // Remove Filters

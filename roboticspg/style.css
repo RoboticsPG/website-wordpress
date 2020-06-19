@@ -374,7 +374,8 @@ button {
     vertical-align: middle;
 }
 
-.subsection-wrapper {
+.subsection-wrapper,
+.has-vertical-align-center {
     vertical-align: middle;
 }
 

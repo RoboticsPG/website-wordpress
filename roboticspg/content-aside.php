@@ -1,5 +1,19 @@
-<section class="subsection has-aqua-light-background-color">
-    <div class="has-white-light-color has-text-align-center">
+<?php 
+if (get_post_meta($post->ID, '_custom_post_theme', true) == "colored") {
+    $backgroundColor = "has-pink-light-background-color";
+    $textColor = "has-text-black-color";
+
+
+} else {
+    // white themed
+    $backgroundColor = "has-white-light-background-color";
+    $textColor = "has-text-black-color";
+}
+
+?>
+
+<section class="subsection <?php echo $backgroundColor?>">
+    <div class="has-text-align-center <?php echo $textColor?>">
         <!-- need to do coloring -->
 
         <?php if (has_post_thumbnail()) : ?>

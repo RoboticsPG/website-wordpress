@@ -29,9 +29,7 @@ get_header(); ?>
 
 			// This if statement will skip posts that were assigned a custom sort value and then had that value removed 
 			if (!empty(get_post_meta($post->ID, '_custom_post_order', true))) : 
-				echo get_post_meta($post->ID, '_custom_post_theme', true);
 				get_template_part('content', get_post_format()); 
-
 
 			endif;
 		endwhile;

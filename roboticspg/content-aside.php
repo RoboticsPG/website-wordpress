@@ -1,23 +1,14 @@
 <?php 
 
 $page_color = get_post_meta(get_query_var('page_id'), '_custom_page_color', true);
+$post_theme = get_post_meta($post->ID, '_custom_post_theme', true);
 
-if (get_post_meta($post->ID, '_custom_post_theme', true) == "colored") {
-    // colored theme
-    $background_color = "has-$page_color-background-color";
-    $text_color = $heading_color = "has-white-light-color";
-
-} else {
-    // white themed
-    $background_color = "has-white-light-background-color";
-    $text_color = "has-text-black-color";
-    $heading_color = "has-heading-$page_color-color";
-}
+$coloring = get_post_coloring($page_color, $post_theme);
 
 ?>
 
-<section class="subsection <?php echo $background_color?> <?php echo $heading_color?>">
-    <div class="has-text-align-center <?php echo $text_color?>">
+<section class="subsection <?php echo $coloring["background_color"]?> <?php echo $coloring["heading_color"]?>">
+    <div class="has-text-align-center <?php echo $coloring["text_color"]?>">
 
         <?php if (has_post_thumbnail()) : ?>
             <div class="image-icon">

@@ -408,6 +408,26 @@ function add_custom_color_palette()
     ));
 }
 
+function get_post_coloring($page_color, $post_theme)
+{
+    $coloring = [];
+
+    if ($post_theme == "colored") {
+        // colored theme
+        $coloring["background_color"] = "has-$page_color-background-color";
+        $coloring["text_color"] = "has-white-light-color";
+        $coloring["heading_color"] = "has-white-light-color";
+    } else {
+        // white themed
+        $coloring["background_color"] = "has-white-light-background-color";
+        $coloring["text_color"] = "has-text-black-color";
+        $coloring["heading_color"] = "has-heading-$page_color-color";
+    }
+
+    return $coloring;
+}
+
+
 /*------------------------------------*\
 	Additional Attrs for Pages & Posts
 \*------------------------------------*/
@@ -440,15 +460,25 @@ function add_custom_meta_boxes($post)
 function page_color_meta_box_options($post)
 {
     wp_nonce_field(basename(__FILE__), 'page_color_meta_box_options_nonce');
+    $current_color = get_post_meta($post->ID, '_custom_page_color', true);
+
+    $colors = [
+        "aqua-light" => "Aqua",
+        "blue-light" => "Blue",
+        "pink-light" => "Pink",
+        "yellow-dark" => "Yellow"
+    ];
+
 
     ?>
         <p>Page Color:</p>
         <p>
             <select name="page_color">
-                <option value="blue-light">Blue</option>
-                <option value="aqua-light">Aqua</option>
-                <option value="yellow-dark">Yellow</option>
-                <option value="pink-light">Pink</option>
+                <?php
+                foreach ($colors as $value => $display_name) {
+                    echo "<option " . ($value == $current_color ? "selected='selected'" : "") . " value='$value'>$display_name</option>";
+                }
+                ?>
             </select>
         </p>
 
@@ -460,7 +490,16 @@ function post_order_theme_meta_box_options($post)
 {
     wp_nonce_field(basename(__FILE__), 'post_order_theme_meta_box_options_nonce');
 
-    $current_pos = get_post_meta($post->ID, '_custom_post_order', true); ?>
+    $current_pos = get_post_meta($post->ID, '_custom_post_order', true);
+    $current_theme = get_post_meta($post->ID, '_custom_post_theme', true);
+
+    $themes = [
+        "white" => "White Themed",
+        "colored" => "Colored Themed"
+    ];
+    ?>
+
+
         <!-- post order on page -->
         <p>Post's position to appear in. E.g. post "1" will appear first, post "2" second.</p>
         <p><input type="number" name="pos" value="<?php echo $current_pos; ?>" /></p>
@@ -471,8 +510,11 @@ function post_order_theme_meta_box_options($post)
         <p>White Themed or Colored Themed?</p>
         <p>
             <select name="theme">
-                <option value="white">White Themed</option>
-                <option value="colored">Colored Themed</option>
+                <?php
+                foreach ($themes as $value => $display_name) {
+                    echo "<option " . ($value == $current_theme ? "selected='selected'" : "") . " value='$value'>$display_name</option>";
+                }
+                ?>
             </select>
         </p>
     <?php
@@ -498,7 +540,6 @@ function jpen_save_cusom_attrs($post_id)
     if (can_save_custom_attrs($post_id, 'post_order_theme_meta_box_options_nonce', 'pos', 'edit_post')) {
         update_post_meta($post_id, '_custom_post_order', sanitize_text_field($_POST['pos']));
         update_post_meta($post_id, '_custom_post_theme', sanitize_text_field($_POST['theme']));
-
     } else if (can_save_custom_attrs($post_id, 'page_color_meta_box_options_nonce', 'page_color', 'edit_page')) {
         update_post_meta($post_id, '_custom_page_color', sanitize_text_field($_POST['page_color']));
     }
@@ -528,10 +569,8 @@ function display_custom_attr_in_columns($column, $post_id)
 {
     if ($column == 'pos') {
         echo '<p>' . get_post_meta($post_id, '_custom_post_order', true) . '</p>';
-
     } else if ($column == 'theme') {
         echo '<p>' . get_post_meta($post_id, '_custom_post_theme', true) . '</p>';
-
     } else if ($column == 'page_color') {
         echo '<p>' . get_post_meta($post_id, '_custom_page_color', true) . '</p>';
     }
@@ -548,27 +587,11 @@ function jpen_custom_post_order_sort($query)
 }
 
 // PAGE COLOR ATTR
-add_filter('manage_pages_columns', 'add_custom_page_attrs_column'); // Sort custom post order in admin view
 add_action('manage_pages_custom_column', 'display_custom_attr_in_columns', 10, 2);
 
 /*------------------------------------*\
     CUSTOM POST TYPES
 \*------------------------------------*/
-
-// register custom post type 'my_custom_post_type' with 'supports' parameter
-add_action('init', 'center-banner');
-
-function create_my_post_type()
-{
-    register_post_type(
-        'center-banner',
-        array(
-            'labels' => array('name' => __('Products')),
-            'public' => true,
-            'supports' => array('title', 'editor', 'post-formats')
-        )
-    );
-}
 
 
 /*------------------------------------*\
@@ -577,7 +600,6 @@ function create_my_post_type()
 
 // Add Theme Support
 add_theme_support("post-formats", array('aside', "gallery", "center-banner"));
-
 
 // Add Actions
 add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
@@ -626,7 +648,6 @@ add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from 
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to post images
 add_filter('manage_posts_columns', 'add_custom_post_attrs_column'); // Sort custom post order in admin view
-
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether

@@ -139,21 +139,21 @@ button {
     cursor: pointer;
 }
 
-.white-highlight-button {
+.white-highlight-button button {
     border-color: var(--WHITE-LIGHT);
     color: var(--WHITE-LIGHT);
     font-weight: bold;
 }
 
-.white-highlight-button:hover {
+.white-highlight-button:hover button {
     background-color: var(--WHITE-LIGHT);
 }
 
-.blue-background-button {
+.blue-background-button button {
     background-color: var(--BLUE-LIGHT);
 }
 
-.blue-background-button:hover {
+.blue-background-button:hover button {
     color: var(--BLUE-LIGHT);
     font-weight: bold;
 }
@@ -213,6 +213,12 @@ button {
     color: var(--YELLOW-DARK);
 }
 
+.has-heading-yellow-dark-color h1,
+.has-heading-yellow-dark-color h2,
+.has-heading-yellow-dark-color h3 {
+    color: var(--YELLOW-DARK);
+}
+
 
 /* aqua light */
 
@@ -241,6 +247,12 @@ button {
     color: var(--AQUA-DARK);
 }
 
+.has-heading-aqua-dark-color h1,
+.has-heading-aqua-dark-color h2,
+.has-heading-aqua-dark-color h3 {
+    color: var(--AQUA-DARK) !important;
+}
+
 
 /* pink light */
 
@@ -252,6 +264,12 @@ button {
     color: var(--PINK-LIGHT);
 }
 
+.has-heading-pink-light-color h1,
+.has-heading-pink-light-color h2,
+.has-heading-pink-light-color h3 {
+    color: var(--PINK-LIGHT) !important;
+}
+
 
 /* pink dark */
 
@@ -261,6 +279,12 @@ button {
 
 .has-pink-dark-color {
     color: var(--PINK-DARK);
+}
+
+.has-heading-pink-dark-color h1,
+.has-heading-pink-dark-color h2,
+.has-heading-pink-dark-color h3 {
+    color: var(--PINK-DARK) !important;
 }
 
 
@@ -289,6 +313,12 @@ button {
 
 .has-blue-dark-color {
     color: var(--BLUE-DARK);
+}
+
+.has-heading-blue-dark-color h1,
+.has-heading-blue-dark-color h2,
+.has-heading-blue-dark-color h3 {
+    color: var(--BLUE-DARK) !important;
 }
 
 

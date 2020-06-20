@@ -1,58 +1,39 @@
-<?php get_header(); ?>
+<?php
 
-	<main role="main">
-		<!-- section -->
-		<section>
+get_header(); ?>
 
-            <?php
+<main role="main">
 
-            $featuredImage = wp_get_attachment_url(get_post_thumbnail_id(get_the_ID()));
-            if (empty($featuredImage)) {
-                $heroStyle = "";
-                $heroSize = "is-small";
-            } else {
-                $heroStyle = "background-image: linear-gradient(rgba(70, 130, 180, 0.5), rgba(70, 130, 180, 0.5)), url('" . $featuredImage . "')";
-                $heroSize = "is-large";
-            }
+	<?php
+	$page_slug = get_post_field( 'post_name', get_post() );
 
-            ?>
+	$sorting_filter = array(
+		'post_type' => 'post',
+		'meta_key' => '_custom_post_order',
+		'orderby' => 'meta_value',
+		'order' => 'ASC',
+		'category_name' => $page_slug
+	);
 
-            <div class="page-header hero is-bold <?php echo $heroSize; ?>" style="<?php echo $heroStyle; ?>">
-                <div class="hero-body">
-                    <h1><?php the_title(); ?></h1>
-                </div>
-            </div>
+	$posts = new WP_query($sorting_filter);
 
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+	if ($posts->have_posts()) :
+		while ($posts->have_posts()) :
+			$posts->the_post();
+			
+			// This if statement will skip posts that were assigned a custom sort value and then had that value removed 
+			if (!empty(get_post_meta($post->ID, '_custom_post_order', true)) && 
+					get_post_meta($post->ID, 'cata', true) == $current_page->post_name) : 
+				get_template_part('content', get_post_format()); 
 
-			<!-- article -->
-			<article class="post" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			endif;
+		endwhile;
+	endif;
+	
+	wp_reset_postdata(); // Set up post data for next loop
 
-				<?php the_content(); ?>
+	?>
 
-				<br class="clear">
-
-				<?php edit_post_link(); ?>
-
-			</article>
-			<!-- /article -->
-
-		<?php endwhile; ?>
-
-		<?php else: ?>
-
-			<!-- article -->
-			<article>
-
-				<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
-
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
-
-		</section>
-		<!-- /section -->
-	</main>
+</main>
 
 <?php get_footer(); ?>

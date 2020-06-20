@@ -473,7 +473,6 @@ function jpen_custom_post_order_value($column, $post_id)
 {
     if ($column == 'pos') {
         echo '<p>' . get_post_meta($post_id, '_custom_post_order', true) . '</p>';
-        
     } else if ($column == 'theme') {
         echo '<p>' . get_post_meta($post_id, '_custom_post_theme', true) . '</p>';
     }
@@ -488,13 +487,36 @@ function jpen_custom_post_order_sort($query)
     }
 }
 
+/*------------------------------------*\
+    CUSTOM POST TYPES
+\*------------------------------------*/
+
+
+//add_post_type_support('page', 'post-formats');
+
+
+// register custom post type 'my_custom_post_type' with 'supports' parameter
+add_action('init', 'center-banner');
+
+function create_my_post_type()
+{
+    register_post_type(
+        'center-banner',
+        array(
+            'labels' => array('name' => __('Products')),
+            'public' => true,
+            'supports' => array('title', 'editor', 'post-formats')
+        )
+    );
+}
 
 /*------------------------------------*\
 	Actions + Filters + ShortCodes
 \*------------------------------------*/
 
 // Add Theme Support
-add_theme_support("post-formats", array('aside', "gallery"));
+add_theme_support("post-formats", array('aside', "gallery", "center-banner"));
+
 
 // Add Actions
 add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head

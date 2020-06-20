@@ -9,11 +9,6 @@ get_header(); ?>
 <main role="main">
 
 	<?php
-	$backgroundColor = "has-aqua-light-background-color";
-	$textColor = "has-white-light-color";
-	?>
-
-	<?php
 	$sortingFilter = array(
 		'post_type' => 'post',
 		'meta_key' => '_custom_post_order',
@@ -34,6 +29,7 @@ get_header(); ?>
 			endif;
 		endwhile;
 	endif;
+	
 	wp_reset_postdata(); // Set up post data for next loop
 
 	?>

@@ -1,16 +1,21 @@
 <?php
+$page_color = get_post_meta(get_query_var('page_id'), '_custom_page_color', true);
+
 if (get_post_meta($post->ID, '_custom_post_theme', true) == "colored") {
-    $backgroundColor = "has-pink-light-background-color";
-    $textColor = "has-text-black-color";
+    // colored theme
+    $background_color = "has-$page_color-background-color";
+    $text_color = $heading_color = "has-white-light-color";
+
 } else {
     // white themed
-    $backgroundColor = "has-white-light-background-color";
-    $textColor = "has-text-black-color";
+    $background_color = "has-white-light-background-color";
+    $text_color = "has-text-black-color";
+    $heading_color = "has-heading-$page_color-color";
 }
 
 ?>
 
-<section class="subsection <?php echo $backgroundColor ?>">
+<section class="subsection <?php echo $backgroundColor?> <?php echo $heading_color?>">
     <div class="row has-text-align-center <?php echo $textColor ?>">
         <div class="col-md-6 col-sm-12 has-vertical-align-center">
             <?php if (has_post_thumbnail()) : ?>

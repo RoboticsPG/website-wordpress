@@ -1,5 +1,5 @@
             <footer class="footer">
-                <div class="container">
+                <div class="container has-text-black-color">
                     <div class="row content">
                         <div class="col-md-4 col-sm-12">
                             <b>Robotics Playground © 2020</b></br>

@@ -196,6 +196,12 @@ button {
     color: var(--YELLOW-LIGHT);
 }
 
+.has-heading-yellow-light-color h1,
+.has-heading-yellow-light-color h2,
+.has-heading-yellow-light-color h3 {
+    color: var(--YELLOW-LIGHT);
+}
+
 
 /* yellow dark */
 
@@ -216,6 +222,12 @@ button {
 
 .has-aqua-light-color {
     color: var(--AQUA-LIGHT);
+}
+
+.has-heading-aqua-light-color h1,
+.has-heading-aqua-light-color h2,
+.has-heading-aqua-light-color h3 {
+    color: var(--AQUA-LIGHT) !important;
 }
 
 
@@ -260,6 +272,12 @@ button {
 
 .has-blue-light-color {
     color: var(--BLUE-LIGHT);
+}
+
+.has-heading-blue-light-color h1,
+.has-heading-blue-light-color h2,
+.has-heading-blue-light-color h3 {
+    color: var(--BLUE-LIGHT) !important;
 }
 
 

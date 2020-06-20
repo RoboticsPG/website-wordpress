@@ -408,7 +408,6 @@ function add_custom_color_palette()
     ));
 }
 
-
 /*------------------------------------*\
 	Additional Attrs for Pages & Posts
 \*------------------------------------*/
@@ -494,18 +493,13 @@ function can_save_custom_attrs($post_id, $post_attr_name, $attr_name, $capabilit
 }
 
 /** saves custom post attrs if possible */
-function jpen_save_custom_post_attrs($post_id)
+function jpen_save_cusom_attrs($post_id)
 {
     if (can_save_custom_attrs($post_id, 'post_order_theme_meta_box_options_nonce', 'pos', 'edit_post')) {
         update_post_meta($post_id, '_custom_post_order', sanitize_text_field($_POST['pos']));
         update_post_meta($post_id, '_custom_post_theme', sanitize_text_field($_POST['theme']));
-    }
-}
 
-/** saves custom page attrs if possible */
-function jpen_save_custom_page_attrs($post_id)
-{
-    if (can_save_custom_attrs($post_id, 'page_color_meta_box_options_nonce', 'page_color', 'edit_page')) {
+    } else if (can_save_custom_attrs($post_id, 'page_color_meta_box_options_nonce', 'page_color', 'edit_page')) {
         update_post_meta($post_id, '_custom_page_color', sanitize_text_field($_POST['page_color']));
     }
 }
@@ -554,7 +548,6 @@ function jpen_custom_post_order_sort($query)
 }
 
 // PAGE COLOR ATTR
-add_action('save_page', 'jpen_save_custom_page_attrs');
 add_filter('manage_pages_columns', 'add_custom_page_attrs_column'); // Sort custom post order in admin view
 add_action('manage_pages_custom_column', 'display_custom_attr_in_columns', 10, 2);
 
@@ -597,7 +590,7 @@ add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline 
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 add_action('after_setup_theme', 'add_custom_color_palette'); // add color palette
 add_action('add_meta_boxes', 'add_custom_meta_boxes'); // add custom post sorting
-add_action('save_post', 'jpen_save_custom_post_attrs'); // add custom post saving order
+add_action('save_post', 'jpen_save_cusom_attrs'); // add custom post saving order
 add_action('manage_posts_custom_column', 'display_custom_attr_in_columns', 10, 2); // display custom post order in admin view
 add_action('pre_get_posts', 'jpen_custom_post_order_sort'); // get posts so they are custom sorted
 

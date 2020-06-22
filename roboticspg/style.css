@@ -31,6 +31,44 @@
 }
 
 
+/*------------------------------------*\
+	TYPOGRAPHY
+\*------------------------------------*/
+
+@font-face {
+    font-family: 'Font-Name';
+    src: url('fonts/font-name.eot');
+    src: url('fonts/font-name.eot?#iefix') format('embedded-opentype'), url('fonts/font-name.woff') format('woff'), url('fonts/font-name.ttf') format('truetype'), url('fonts/font-name.svg#font-name') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: 'Barlow', sans-serif;
+    font-size: 4em;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+h2 {
+    font-family: 'Barlow', sans-serif;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+p {
+    font-family: 'Barlow', sans-serif;
+}
+
+.has-text-align-center {
+    text-align: center;
+    padding: 0 !important;
+}
+
+
 /* global box-sizing */
 
 *,
@@ -122,267 +160,6 @@ input:focus {
 
 
 /*------------------------------------*\
-    BUTTONS
-\*------------------------------------*/
-
-button {
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 5px;
-    padding: 15px 32px;
-    margin: 4px 2px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    font-family: 'Barlow', sans-serif;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.white-highlight-button button {
-    border-color: var(--WHITE-LIGHT);
-    color: var(--WHITE-LIGHT);
-    font-weight: bold;
-}
-
-.white-highlight-button:hover button {
-    background-color: var(--WHITE-LIGHT);
-}
-
-.blue-background-button button {
-    background-color: var(--BLUE-LIGHT);
-}
-
-.blue-background-button:hover button {
-    color: var(--BLUE-LIGHT);
-    font-weight: bold;
-}
-
-
-/*------------------------------------*\
-    COLOR PALETTE
-\*------------------------------------*/
-
-
-/* white light */
-
-.has-white-light-background-color {
-    background-color: var(--WHITE-LIGHT);
-}
-
-.has-white-light-color {
-    color: var(--WHITE-LIGHT) !important;
-}
-
-
-/* white dark */
-
-.has-white-dark-background-color {
-    background-color: var(--WHITE-DARK);
-}
-
-.has-white-dark-color {
-    color: var(--WHITE-DARK);
-}
-
-
-/* yellow light */
-
-.has-yellow-light-background-color {
-    background-color: var(--YELLOW-LIGHT);
-}
-
-.has-yellow-light-color {
-    color: var(--YELLOW-LIGHT);
-}
-
-.has-heading-yellow-light-color h1,
-.has-heading-yellow-light-color h2,
-.has-heading-yellow-light-color h3 {
-    color: var(--YELLOW-LIGHT);
-}
-
-
-/* yellow dark */
-
-.has-yellow-dark-background-color {
-    background-color: var(--YELLOW-DARK);
-}
-
-.has-yellow-dark-color {
-    color: var(--YELLOW-DARK);
-}
-
-.has-heading-yellow-dark-color h1,
-.has-heading-yellow-dark-color h2,
-.has-heading-yellow-dark-color h3 {
-    color: var(--YELLOW-DARK);
-}
-
-
-/* aqua light */
-
-.has-aqua-light-background-color {
-    background-color: var(--AQUA-LIGHT);
-}
-
-.has-aqua-light-color {
-    color: var(--AQUA-LIGHT);
-}
-
-.has-heading-aqua-light-color h1,
-.has-heading-aqua-light-color h2,
-.has-heading-aqua-light-color h3 {
-    color: var(--AQUA-LIGHT) !important;
-}
-
-
-/* aqua dark */
-
-.has-aqua-dark-background-color {
-    background-color: var(--AQUA-DARK);
-}
-
-.has-aqua-dark-color {
-    color: var(--AQUA-DARK);
-}
-
-.has-heading-aqua-dark-color h1,
-.has-heading-aqua-dark-color h2,
-.has-heading-aqua-dark-color h3 {
-    color: var(--AQUA-DARK) !important;
-}
-
-
-/* pink light */
-
-.has-pink-light-background-color {
-    background-color: var(--PINK-LIGHT);
-}
-
-.has-pink-light-color {
-    color: var(--PINK-LIGHT);
-}
-
-.has-heading-pink-light-color h1,
-.has-heading-pink-light-color h2,
-.has-heading-pink-light-color h3 {
-    color: var(--PINK-LIGHT) !important;
-}
-
-
-/* pink dark */
-
-.has-pink-dark-background-color {
-    background-color: var(--PINK-DARK);
-}
-
-.has-pink-dark-color {
-    color: var(--PINK-DARK);
-}
-
-.has-heading-pink-dark-color h1,
-.has-heading-pink-dark-color h2,
-.has-heading-pink-dark-color h3 {
-    color: var(--PINK-DARK) !important;
-}
-
-
-/* blue light */
-
-.has-blue-light-background-color {
-    background-color: var(--BLUE-LIGHT);
-}
-
-.has-blue-light-color {
-    color: var(--BLUE-LIGHT);
-}
-
-.has-heading-blue-light-color h1,
-.has-heading-blue-light-color h2,
-.has-heading-blue-light-color h3 {
-    color: var(--BLUE-LIGHT) !important;
-}
-
-
-/* blue dark */
-
-.has-blue-dark-background-color {
-    background-color: var(--BLUE-DARK);
-}
-
-.has-blue-dark-color {
-    color: var(--BLUE-DARK);
-}
-
-.has-heading-blue-dark-color h1,
-.has-heading-blue-dark-color h2,
-.has-heading-blue-dark-color h3 {
-    color: var(--BLUE-DARK) !important;
-}
-
-
-/* text black */
-
-.has-text-black-background-color {
-    background-color: var(--TEXT-BLACK);
-}
-
-.has-text-black-color {
-    color: var(--TEXT-BLACK);
-}
-
-
-/*------------------------------------*\
-    NAVBAR
-\*------------------------------------*/
-
-.hide {
-    display: none;
-}
-
-#navbar-wrapper {
-    padding-left: 15%;
-    padding-right: 15%;
-    z-index: 99;
-    width: 100%;
-    font-size: 17px;
-    background-color: var(--WHITE-LIGHT);
-}
-
-.nav-link:hover:not(#menuFavicon):not(.active) {
-    border-top: 4px solid var(--YELLOW-LIGHT);
-    color: var(--YELLOW-LIGHT);
-    font-weight: bold;
-}
-
-.nav-link:not(#menuFavicon):not(.active) {
-    border-top: 4px solid var(--WHITE-LIGHT);
-    color: var(--TEXT-BLACK);
-    font-weight: normal;
-}
-
-#navbar-wrapper a {
-    font-family: 'Barlow', sans-serif;
-    margin: 0 5px 0px 5px;
-    padding: 10px 15px 10px 15px;
-}
-
-.active {
-    text-decoration: none;
-    border-top: 4px solid var(--AQUA-LIGHT);
-    color: var(--AQUA-LIGHT) !important;
-    font-weight: bold;
-}
-
-#menuFavicon,
-#menuFavicon a {
-    margin: 0;
-    padding: 0;
-}
-
-
-/*------------------------------------*\
     STRUCTURE
 \*------------------------------------*/
 
@@ -408,151 +185,6 @@ button {
 
 
 /*------------------------------------*\
-    SUBSECTIONS
-\*------------------------------------*/
-
-.subsection {
-    overflow: hidden;
-    width: 100%;
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    text-align: justify;
-    vertical-align: middle;
-}
-
-.subsection-wrapper,
-.has-vertical-align-center {
-    vertical-align: middle;
-}
-
-
-/*------------------------------------*\
-    FOOTER
-\*------------------------------------*/
-
-.footer {
-    background-color: var(--WHITE-LIGHT);
-    padding: 10% 15% 5% 15%;
-}
-
-a.btn-social,
-.btn-social {
-    border-radius: 50%;
-    color: var(--WHITE-LIGHT) !important;
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    margin: 8px 4px;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color .3s;
-    webkit-transition: background-color .3s;
-}
-
-.btn-social .fa,
-.btn-social i {
-    backface-visibility: hidden;
-    moz-backface-visibility: hidden;
-    ms-transform: scale(1);
-    o-transform: scale(1);
-    transform: scale(1);
-    transition: all .25s;
-    webkit-backface-visibility: hidden;
-    webkit-transform: scale(1);
-    webkit-transition: all .25s;
-}
-
-.btn-social:hover,
-.btn-social:focus {
-    color: var(--WHITE-LIGHT);
-    outline: none;
-    text-decoration: none;
-}
-
-.btn-social:hover .fa,
-.btn-social:focus .fa,
-.btn-social:hover i,
-.btn-social:focus i {
-    ms-transform: scale(1.3);
-    o-transform: scale(1.3);
-    transform: scale(1.3);
-    webkit-transform: scale(1.3);
-}
-
-.btn-social.btn-xs {
-    font-size: 9px;
-    height: 24px;
-    line-height: 13px;
-    margin: 6px 2px;
-    width: 24px;
-}
-
-.btn-social.btn-sm {
-    font-size: 13px;
-    height: 36px;
-    line-height: 18px;
-    margin: 6px 2px;
-    width: 36px;
-}
-
-.btn-social.btn-lg {
-    font-size: 22px;
-    height: 72px;
-    line-height: 40px;
-    margin: 10px 6px;
-    width: 72px;
-}
-
-.btn-facebook {
-    background-color: #3b5998;
-}
-
-.btn-facebook:hover {
-    background-color: #4c70ba;
-}
-
-.btn-instagram {
-    background-color: #3f729b;
-}
-
-.btn-instagram:hover {
-    background-color: #548cb9;
-}
-
-.btn-linkedin {
-    background-color: #0976b4;
-}
-
-.btn-linkedin:hover {
-    background-color: #0b96e5;
-}
-
-.btn-youtube {
-    background-color: #e52d27;
-}
-
-.btn-youtube:hover {
-    background-color: #ea5955;
-}
-
-.btn-email {
-    background-color: #44c456;
-}
-
-.btn-email:hover {
-    background-color: #6bd079;
-}
-
-
-/*------------------------------------*\
-    PAGES
-\*------------------------------------*/
-
-
-/*------------------------------------*\
     IMAGES
 \*------------------------------------*/
 
@@ -565,78 +197,6 @@ a.btn-social,
 .image-icon img,
 .image-icon {
     height: 50px;
-}
-
-
-/*------------------------------------*\
-	TYPOGRAPHY
-\*------------------------------------*/
-
-@font-face {
-    font-family: 'Font-Name';
-    src: url('fonts/font-name.eot');
-    src: url('fonts/font-name.eot?#iefix') format('embedded-opentype'), url('fonts/font-name.woff') format('woff'), url('fonts/font-name.ttf') format('truetype'), url('fonts/font-name.svg#font-name') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-h1 {
-    font-family: 'Barlow', sans-serif;
-    font-size: 4em;
-    font-weight: 600;
-    text-align: center;
-    margin: 0 0 10px 0;
-}
-
-h2 {
-    font-family: 'Barlow', sans-serif;
-    font-size: 2em;
-    font-weight: 600;
-    text-align: center;
-    margin: 0 0 10px 0;
-}
-
-p {
-    font-family: 'Barlow', sans-serif;
-}
-
-.has-text-align-center {
-    text-align: center;
-    padding: 0 !important;
-}
-
-
-/*------------------------------------*\
-    ANIMATIONS
-\*------------------------------------*/
-
-p,
-a,
-h1,
-h2,
-h3,
-img,
-li,
-ol,
-ul,
-figure {
-    opacity: 0;
-    transform: translate(0, 5vh);
-    transition: all 1s;
-}
-
-p.visible,
-a.visible,
-h1.visible,
-h2.visible,
-h3.visible,
-img.visible,
-li.visible,
-ol.visible,
-ul.visible,
-figure.visible {
-    opacity: 1;
-    transform: translate(0, 0);
 }
 
 

@@ -1,0 +1,47 @@
+/*------------------------------------*\
+    NAVBAR
+\*------------------------------------*/
+
+.hide {
+    display: none;
+}
+
+#navbar-wrapper {
+    padding-left: 15%;
+    padding-right: 15%;
+    z-index: 99;
+    width: 100%;
+    font-size: 17px;
+    background-color: var(--WHITE-LIGHT);
+}
+
+.nav-link:hover:not(#menuFavicon):not(.active) {
+    border-top: 4px solid var(--YELLOW-LIGHT);
+    color: var(--YELLOW-LIGHT);
+    font-weight: bold;
+}
+
+.nav-link:not(#menuFavicon):not(.active) {
+    border-top: 4px solid var(--WHITE-LIGHT);
+    color: var(--TEXT-BLACK);
+    font-weight: normal;
+}
+
+#navbar-wrapper a {
+    font-family: 'Barlow', sans-serif;
+    margin: 0 5px 0px 5px;
+    padding: 10px 15px 10px 15px;
+}
+
+.active {
+    text-decoration: none;
+    border-top: 4px solid var(--AQUA-LIGHT);
+    color: var(--AQUA-LIGHT) !important;
+    font-weight: bold;
+}
+
+#menuFavicon,
+#menuFavicon a {
+    margin: 0;
+    padding: 0;
+}

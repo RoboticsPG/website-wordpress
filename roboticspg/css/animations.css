@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    ANIMATIONS
+\*------------------------------------*/
+
+p,
+a,
+h1,
+h2,
+h3,
+img,
+li,
+ol,
+ul,
+figure {
+    opacity: 0;
+    transform: translate(0, 5vh);
+    transition: all 1s;
+}
+
+p.visible,
+a.visible,
+h1.visible,
+h2.visible,
+h3.visible,
+img.visible,
+li.visible,
+ol.visible,
+ul.visible,
+figure.visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}

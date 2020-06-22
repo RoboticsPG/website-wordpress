@@ -414,17 +414,33 @@ function get_post_coloring($page_color, $post_theme)
 
     if ($post_theme == "colored") {
         // colored theme
-        $coloring["background_color"] = "has-$page_color-background-color";
-        $coloring["text_color"] = "has-white-light-color";
-        $coloring["heading_color"] = "has-white-light-color";
-    } else {
-        // white themed
         $coloring["background_color"] = "has-white-light-background-color";
+
         $coloring["text_color"] = "has-text-black-color";
         $coloring["heading_color"] = "has-heading-$page_color-color";
+
+        $coloring["button_background"] = "$page_color-background-button";
+        $coloring["button_highlight"] = "white-light-highlight-button";
+
+    } else {
+        // white themed
+        $coloring["background_color"] = "has-$page_color-background-color";
+
+        $coloring["text_color"] = "has-white-light-color";
+        $coloring["heading_color"] = "has-white-light-color";
+
+        $coloring["button_background"] = "white-light-background-button";
+        $coloring["button_highlight"] = "$page_color-highlight-button";
+
     }
 
     return $coloring;
+}
+
+function get_subsection_class($coloring) {
+    return 'subsection ' . $coloring["button_background"] . ' ' .
+     $coloring["button_highlight"] . ' ' .  $coloring["background_color"] . ' ' . 
+     $coloring["heading_color"];
 }
 
 
@@ -590,16 +606,33 @@ function jpen_custom_post_order_sort($query)
 add_action('manage_pages_custom_column', 'display_custom_attr_in_columns', 10, 2);
 
 /*------------------------------------*\
-    CUSTOM POST TYPES
+    CUSTOM POST FORMATS
 \*------------------------------------*/
 
+// register custom post type 'my_custom_post_type' with 'supports' parameter
+add_action( 'init', 'create_my_post_type' );
+function create_my_post_type() {
+    register_post_type( 'center_banner',
+      array(
+        'labels' => array( 'name' => __( 'Products' ) ),
+        'public' => true,
+        'supports' => array('title', 'editor', 'post-formats')
+    )
+  );
+}
+
+// add post-formats to post_type 'page'
+add_post_type_support( 'page', 'post-formats' );
+
+//add post-formats to post_type 'my_custom_post_type'
+add_post_type_support( 'center_banner', 'post-formats' );
 
 /*------------------------------------*\
 	Actions + Filters + ShortCodes
 \*------------------------------------*/
 
 // Add Theme Support
-add_theme_support("post-formats", array('aside', "gallery", "center-banner"));
+add_theme_support("post-formats", array('aside', "gallery", "center_banner"));
 
 // Add Actions
 add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
@@ -658,6 +691,15 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
+
+
+// Stylesheets
+wp_enqueue_style( 'animations', get_template_directory_uri() . '/css/animations.css');
+wp_enqueue_style( 'buttons', get_template_directory_uri() . '/css/buttons.css');
+wp_enqueue_style( 'footer', get_template_directory_uri() . '/css/footer.css');
+wp_enqueue_style( 'navbar', get_template_directory_uri() . '/css/navbar.css');
+wp_enqueue_style( 'subsections', get_template_directory_uri() . '/css/subsections.css');
+wp_enqueue_style( 'text-color', get_template_directory_uri() . '/css/text-color.css');
 
 /*------------------------------------*\
 	Custom Post Types

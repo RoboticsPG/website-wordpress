@@ -75,19 +75,12 @@ function add_custom_color_palette()
 
 function get_post_coloring($page_color, $post_theme)
 {
+
+
     $coloring = [];
 
     if ($post_theme == "colored") {
         // colored theme
-        $coloring["background_color"] = "has-white-light-background-color";
-
-        $coloring["text_color"] = "has-text-black-color";
-        $coloring["heading_color"] = "has-heading-$page_color-color";
-
-        $coloring["button_background"] = "$page_color-background-button";
-        $coloring["button_highlight"] = "white-light-highlight-button";
-    } else {
-        // white themed
         $coloring["background_color"] = "has-$page_color-background-color";
 
         $coloring["text_color"] = "has-white-light-color";
@@ -95,6 +88,17 @@ function get_post_coloring($page_color, $post_theme)
 
         $coloring["button_background"] = "white-light-background-button";
         $coloring["button_highlight"] = "$page_color-highlight-button";
+
+
+    } else {
+        // white themed
+        $coloring["background_color"] = "has-white-light-background-color";
+
+        $coloring["text_color"] = "has-text-black-color";
+        $coloring["heading_color"] = "has-heading-$page_color-color";
+
+        $coloring["button_background"] = "$page_color-background-button";
+        $coloring["button_highlight"] = "white-light-highlight-button";
     }
 
     return $coloring;

@@ -33,4 +33,4 @@ if (function_exists('add_theme_support')) {
 
 
 // Add Theme Support
-add_theme_support("post-formats", array('aside', "gallery", "center_banner"));
+add_theme_support("post-formats", array('aside', "gallery", "link"));

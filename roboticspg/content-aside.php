@@ -7,19 +7,20 @@ $coloring = get_post_coloring($page_color, $post_theme);
 
 ?>
 
-<section class="<?php echo get_subsection_class($coloring)?>">
-    <div class="has-text-align-center <?php echo $coloring["text_color"]?>">
+<section class="subsection  blue-background-button <?php echo $coloring["background_color"]?> <?php echo $coloring["heading_color"]?>">
+    <div class="row has-text-align-center blue-background-button <?php echo $coloring["text_color"]?>">
+        <div class="col-md-6 col-sm-12 has-vertical-align-center">
+            <?php if (has_post_thumbnail()) : ?>
+                <?php echo get_the_post_thumbnail($_post->ID, 'full') ?>
+            <?php endif ?>
+        </div>
 
-        <?php if (has_post_thumbnail()) : ?>
-            <div class="image-icon">
-                <?php echo get_the_post_thumbnail($_post->ID, 'thumbnail') ?>
-            </div>
-            </br>
-        <?php endif ?>
+        <div class="col-md-6 col-sm-12 has-vertical-align-center">
+            <h2><?php the_title(); ?></h2>
 
-        <h2><?php the_title(); ?></h2>
-
-        <?php the_content(); ?>
+            <?php the_content(); ?>
+        </div>
+    </div>
 
     </div>
 </section>

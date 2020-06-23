@@ -17,3 +17,13 @@
 .has-vertical-align-center {
     vertical-align: middle;
 }
+
+.parallax {
+    /* Set a specific height */
+    height: 55vh;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

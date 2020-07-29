@@ -5,12 +5,10 @@ $post_theme = get_post_meta($post->ID, '_custom_post_theme', true);
 
 $coloring = get_post_coloring($page_color, $post_theme);
 
-echo $post_theme;
-echo $page_color;
 ?>
 
-<section class="<?php echo $coloring["background_color"]?> <?php echo $coloring["heading_color"]?>">
-    <div class="has-text-align-center <?php echo $coloring["text_color"]?>">
+<section class="<?php echo get_subsection_class($coloring)?>">
+    <div class="has-text-align-center <?php echo get_div_class($coloring)?>">
 
         <?php if (has_post_thumbnail()) : ?>
             <div class="image-icon">

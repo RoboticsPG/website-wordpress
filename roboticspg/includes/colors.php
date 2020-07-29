@@ -111,6 +111,10 @@ function get_subsection_class($coloring)
         $coloring["heading_color"];
 }
 
+function get_div_class($coloring) {
+    return $coloring["button_highlight"] . ' ' . $coloring["text_color"];
+}
+
 add_action('after_setup_theme', 'add_custom_color_palette'); // add color palette
 
 ?>

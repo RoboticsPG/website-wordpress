@@ -7,8 +7,8 @@ $coloring = get_post_coloring($page_color, $post_theme);
 
 ?>
 
-<section class="subsection  blue-background-button <?php echo $coloring["background_color"]?> <?php echo $coloring["heading_color"]?>">
-    <div class="has-text-align-center blue-background-button <?php echo $coloring["text_color"]?>">
+<section class="<?php echo get_subsection_class($coloring)?>">
+    <div class="has-text-align-center <?php echo get_div_class($coloring)?>">
         <div class="col-md-4 col-sm-6 has-vertical-align-center">
             <?php if (has_post_thumbnail()) : ?>
                 <?php echo get_the_post_thumbnail($_post->ID, 'full') ?>

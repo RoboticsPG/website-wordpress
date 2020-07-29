@@ -7,7 +7,7 @@ $coloring = get_post_coloring($page_color, $post_theme);
 
 ?>
 <?php if (has_post_thumbnail()) : ?>
-    <section class="subsection parallax <?php echo $coloring["background_color"] ?>" style="background-image: url(<?php echo get_the_post_thumbnail_url($_post->ID, 'full') ?>)">
+    <section class="parallax <?php echo get_subsection_class($coloring)?>" style="background-image: url(<?php echo get_the_post_thumbnail_url($_post->ID, 'full') ?>)">
     </section>
 
 <?php endif ?>
